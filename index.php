@@ -35,7 +35,7 @@
   </head>
   <body>
   <header class="headersection text-center">
-      <h1 class="p-5">Convert Base64 Image formate To Png!</h1>
+      <h1 class="p-5">Convert Base64 Image formate To Png:</h1>
   </header>
   <div class="container">
   <?php
