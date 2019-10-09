@@ -1,17 +1,22 @@
 <?php
+
   if(isset($_POST['image_source'])) {
+
     define('UPLOAD_DIR', 'uploads/');
     $image_parts = explode(";base64,", $_POST['image_source']);
     $image_type_aux = explode("image/", $image_parts[0]);
     $image_type = $image_type_aux[1];
     $image_base64 = base64_decode($image_parts[1]);
-    $file = UPLOAD_DIR . uniqid() . '.png';
-    file_put_contents($file, $image_base64);
-    if(file_put_contents($file, $image_base64)){
-        $successmsg = "Image Uploaded!";
+    $filename = uniqid() . '.'.$image_type;
+    $file = UPLOAD_DIR . $filename;
+    file_put_contents($file, $image_base64);   
+
+    if(file_put_contents($file, $image_base64)){ 
+        $successmsg = "Image save in Uploads Directory!";
     }else{
         $errormsg = "Something went wrong!";
     }
+    
   }
 ?> 
 
@@ -35,7 +40,7 @@
   </head>
   <body>
   <header class="headersection text-center">
-      <h1 class="p-5">Convert Base64 Image formate To Png:</h1>
+      <h1 class="p-5">Convert Base64 Image Code To Origional File:</h1>
   </header>
   <div class="container">
   <?php
@@ -59,6 +64,7 @@
         </button>
   </div>
   <?php } ?>
+
     <form method="post">
        <div class="form-group">
             <label for="exampleFormControlTextarea1">Paste Here Base64 Source:</label>
@@ -67,9 +73,7 @@
        <button name="submit" class="btn btn-primary">Submit</button>
     </form>
 
-    <!--<hr>
-     <h1>List Of all Images:</h1>-->
-    </div> 
+   </div> 
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -84,5 +88,6 @@
             $("#success-alert").alert('close'); }, 2000); 
       });
     </script> 
+
   </body>
 </html>
